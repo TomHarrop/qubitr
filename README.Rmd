@@ -1,0 +1,65 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# `qubitr`
+
+Analyse results from the Clariostar Qubit assay
+
+## Installation
+
+You can use `devtools` to install qubitr from GitHub:
+
+``` r
+install.packages("devtools")
+devtools::install_github("TomHarrop/qubitr")
+```
+
+## Example
+
+Run the analysis:
+
+```{r example, eval=FALSE}
+rename <- c("plate_row",
+            "plate_col",
+            "content",
+            "raw_fl",
+            "average_fl")
+
+raw_data <- fread("my_clariostar_data.csv",
+                  skip = 11,
+                  select = c(1:4, 6),
+                  col.names = rename)
+
+# where is everything?
+raw_data[grep("^Standard", content)]
+raw_data[grep("^Blank", content)]
+
+# add volumes (**SIDE EFFECTS**!!!)
+AddVolumes(raw_data, "A1", "D5", 1, 50)
+AddVolumes(raw_data, "A6", "H6", 1, 50)
+AddVolumes(raw_data, "A7", "H11", 10, 800)
+AddVolumes(raw_data, "E5", "H5", 10, 800)
+
+# subtract background
+background_subtracted <- SubtractBackground(raw_data, c("A12", "B12"))
+
+# run the linear model
+standard_wells <- data.table(well = paste0(LETTERS[3:8], 12),
+                             amount = c(rep(10, 3), rep(100, 3)))
+calculated_amounts <- CalculateAmounts(background_subtracted, standard_wells)
+
+# get the results
+final_results <- ExtractResults(calculated_amounts)
+```
+
