@@ -1,0 +1,18 @@
+Package: qubitr
+Type: Package
+Title: Analyse Results from the Clariostar Qubit Assay
+Version: 0.1.1
+Author: Tom Harrop <twharrop@gmail.com>
+Maintainer: Tom Harrop <twharrop@gmail.com>
+Description: Analyse Results from the Clariostar Qubit Assay
+    Currently only for internal use.
+License: GPL-3
+Encoding: UTF-8
+URL: https://github.com/TomHarrop/qubitr
+BugReports: https://github.com/TomHarrop/qubitr/issues
+Imports:
+    data.table (>= 1.11.8),
+Depends:
+    R (>= 3.5.2)
+LazyData: true
+RoxygenNote: 6.1.1
