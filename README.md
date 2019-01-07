@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `qubitr`
+# qubitr
 
 Analyse results from the Clariostar Qubit assay
 
