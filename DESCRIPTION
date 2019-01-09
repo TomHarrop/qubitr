@@ -1,7 +1,7 @@
 Package: qubitr
 Type: Package
 Title: Analyse Results from the Clariostar Qubit Assay
-Version: 0.1.1
+Version: 0.1.2
 Author: Tom Harrop <twharrop@gmail.com>
 Maintainer: Tom Harrop <twharrop@gmail.com>
 Description: Analyse Results from the Clariostar Qubit Assay

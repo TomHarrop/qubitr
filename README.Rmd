@@ -31,20 +31,22 @@ devtools::install_github("TomHarrop/qubitr")
 Run the analysis:
 
 ```{r example}
+library(data.table)
 library(qubitr)
 
-# load the raw data. You'll need a column called `raw_fl`.
+# load the raw data. You'll need columns called `plate_row`, `plate_col` and
+# `raw_fl` for the analysis. `content` helps you find the blank and standard
+# wells.
 rename <- c("plate_row",
             "plate_col",
             "content",
-            "raw_fl",
-            "average_fl")
+            "raw_fl")
 
 # this command will be different for different input files, especially the
 # `skip` argument.
 raw_data <- fread("my_clariostar_data.csv",
                   skip = 11,
-                  select = c(1:4, 6),
+                  select = c(1:4),
                   col.names = rename)
 
 # make sure it looks OK
