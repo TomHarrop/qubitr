@@ -47,13 +47,6 @@ raw_data <- fread("my_clariostar_data.csv",
                   skip = 11,
                   select = c(1:4),
                   col.names = my_col_names)
-```
-
-  - make sure it looks OK
-
-<!-- end list -->
-
-``` r
 head(raw_data)
 #>    plate_row plate_col   content raw_fl
 #> 1:         A         1 Sample X1  20958
@@ -66,12 +59,12 @@ head(raw_data)
 
 #### Add volumes
 
-  - `AddVolumes()` has **side effects**, because it modifies `raw_data`
+  - Note that `AddVolumes()` modifies `raw_data`, rather than returning
+    a new `data.table` (*i.e.* it has **side effects**)
 
 <!-- end list -->
 
 ``` r
-
 AddVolumes(raw_data, "A1", "D5", 1, 50)
 AddVolumes(raw_data, "A6", "H6", 1, 50)
 AddVolumes(raw_data, "A7", "H11", 10, 800)
@@ -142,7 +135,6 @@ calculated_amounts <- CalculateAmounts(background_subtracted, standard_wells)
 
 ``` r
 final_results <- ExtractResults(calculated_amounts)
-
 head(final_results)
 #>    plate_col plate_row volume_added calculated_concentration sample_volume
 #> 1:         1         A            1                 10.07673            50
