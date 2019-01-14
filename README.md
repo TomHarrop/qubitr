@@ -16,7 +16,7 @@ devtools::install_github("TomHarrop/qubitr")
 
 ## Example
 
-Run the analysis:
+#### Load `qubitr` and `data.table`
 
 ``` r
 library(data.table)
